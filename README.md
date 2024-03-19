@@ -1,6 +1,14 @@
 A espera de uma correção por parte do professor (11-03-2024)
 A espera terminou e tivemos que resolver nos mesmos kk.
 
+Acessos:
+marcos@gmail.com
+123456
+jhamil@gmail.com
+123456
+mario@gmail.com
+333333
+
 Tela de Login - acesso ao diario.
 ![image](https://github.com/Cristiandiv/appMeuDiario/assets/132522844/852cf296-594c-4c01-aead-604f1d039bc8)
 
