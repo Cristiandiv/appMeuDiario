@@ -7,7 +7,12 @@ export default function Home() {
       <Text>Meu Diario</Text>
       <Text>Data: 11/03/2024</Text>
       <Text>Palavra: Codar </Text>
-      <Text>Mais que dor de cabeça aiai</Text>
+      <Text>Resolvendo as conexões com o Firebase, alguem me ajude!</Text>
+
+      <Text>Meu Diario</Text>
+      <Text>Data: 18/03/2024</Text>
+      <Text>Palavra: Codar </Text>
+      <Text>Consegui resolver :D</Text>
       <StatusBar style="auto" />
     </View>
   );

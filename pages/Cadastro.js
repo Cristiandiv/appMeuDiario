@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { Text, TextInput, View, StyleSheet, TouchableOpacity} from 'react-native';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 
-import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
-import {ReactNativeAsyncStorage} from '@react-native-async-storage/async-storage';
 
 //configuracao do firebase
 import { initializeApp } from "firebase/app";
@@ -21,45 +19,49 @@ const firebaseConfig = {
 
   const app = initializeApp(firebaseConfig);
 
-  const auth = initializeAuth(app, {
-    persistence: getReactNativePersistence(ReactNativeAsyncStorage)
-  });
+
+  const auth = getAuth();
   
 
-  //instalar o @react-native-async-storage/async-storage
-export default function Acesso({navigation}){
+export default function Cadastro({navigation}){
 
     const [email,setEmail] = useState('');
     const [senha,setSenha] = useState('');
     const [user,setUser] = useState('');
     
 
-    function Login(){
-        signInWithEmailAndPassword(auth, email, senha).catch(
-            function(error){
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                alert(errorCode, errorMessage);
-            }
-        )
-        
+    function Cadastro(){
+
+        createUserWithEmailAndPassword(auth, email, senha)
+        .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+        });
+
     }
 
     useEffect (()=>{
         onAuthStateChanged(auth,function(user){
             setUser(user);
             if(user){
-                return navigation.navigate('Home');
+                return navigation.navigate('Acesso');
             }
             else{}
         });
     },[])
 
+
     
 
     return(
         <View style={styles.container}>
-            <Text style={styles.titulo}>Acesso ao Diario</Text>
+            <Text style={styles.titulo}>Cadastrar-se</Text>
 
             <TextInput 
             style={styles.textoInput}
@@ -78,19 +80,19 @@ export default function Acesso({navigation}){
             <TouchableOpacity
             style={styles.botao}
             onPress={()=>{
-                Login();
+                Cadastro();
             }}
             >
-                <Text style={styles.botaoTexto}>Logar</Text>
+                <Text style={styles.botaoTexto}>Cadastrar</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-            style={styles.botaoCadas}
+            style={styles.botaoVoltar}
             onPress={()=>{
-                navigation.navigate('Cadastro');
+                navigation.navigate('Acesso');
             }}
             >
-                <Text style={styles.botaoTextoCadas}>Cadastrar</Text>
+                <Text style={styles.botaoTextoVoltar}>Voltar</Text>
             </TouchableOpacity>
 
         </View>
@@ -107,11 +109,12 @@ const styles = StyleSheet.create({
 
     textoInput:{
         width: 200,
-        backgroundColor: '#0000CD',
+        backgroundColor: '#dcdcdc',
         color: '#FFFAFA',
         fontSize: 16,
         marginTop: 20,
-        borderRadius: 6
+        borderRadius: 6,
+        padding: 4
     },
 
     titulo:{
@@ -128,22 +131,23 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
 
+    botaoVoltar: {
+        backgroundColor: '#D20103',
+        width: 150,
+        height: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 30,
+        borderRadius: 10
+    },
+
+
     botaoTexto: {
         fontSize: 20
     },
 
-    botaoCadas: {
-        backgroundColor: '#01A1D3',
-        width: 150,
-        height: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: 20,
-        borderRadius: 10
-    },
-
-    botaoTextoCadas: {
+    botaoTextoVoltar: {
         fontSize: 20,
-        color: '#ffffff'
+        color:'#ffffff'
     },
 });
