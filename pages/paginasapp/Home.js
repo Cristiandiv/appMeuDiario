@@ -24,35 +24,97 @@ export default function Home({navigation}) {
     });
   },[]);
 
-
-
   return (
-    <View style={styles.container}>
+    <View style={estilo.container}>
       <View>
       <Text style={estilo.titulo}>Lista de Dias</Text>
       </View>
 
       <FlatList
       data={diario}
-      >
-        
-        </FlatList>     
-     
+      renderItem={({item})=>{
+        return(
+         <View style={estilo.musicas}>
 
-      <Text>Meu Diario</Text>
-      <Text>Data: 18/03/2024</Text>
-      <Text>Palavra: Codar </Text>
-      <Text>Consegui resolver :D</Text>
-      <StatusBar style="auto" />
+          <TouchableOpacity onPress={()=>navigation.navigate("AlterarDiario",{
+            id: item.id,
+            banda: item.artistabanda,
+            genero: item.genero,
+            musica: item.musica
+          })}>
+            <View style={estilos.itens}>
+              <Text style={estilo.titulobanda}>Artista/Banda: <Text style={estilo.textobanda}>{item.artistabanda}
+              </Text></Text>
+              <Text style={estilo.titulobanda}>Genêro: <Text style={estilo.textobanda}>{item.genero}
+              </Text></Text>
+              <Text style={estilo.titulobanda}>Musica: <Text style={estilo.textobanda}>{item.musica}
+              </Text></Text>
+            </View>
+          </TouchableOpacity>
+
+            <View style={estilo.botaodeletar}>
+              <TouchableOpacity onPress={()=>{deleteMusica(item.id)}}>
+                <MaterialCommunityIcons name="delete-empty" size={70} color="red" />
+              </TouchableOpacity>
+            </View>
+         </View> 
+        );
+      }}
+      >
+
+      </FlatList>    
+
+      <TouchableOpacity style={estilo.addbutton} onPress={()=>navigation.navigate("CadMusica")}>
+        <MaterialCommunityIcons name="plus-circle-outline" size={70} color="green" />  
+      </TouchableOpacity>  
+     
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+const estilo = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center'
   },
+  titulo:{
+    marginTop: 50,
+    fontSize: 30
+  },
+  itens:{
+    marginHorizontal: 10,
+    marginVertical: 10,
+    padding: 10
+  },
+  titulobanda:{
+    fontSize: 13,
+    color: '#fff'
+  },
+  textobanda:{
+    fontSize: 15,
+    fontWeight: "bold"
+  },
+  musicas:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: 10,
+    marginVertical: 10,
+    padding: 10, 
+    backgroundColor: '#0000CD',
+    borderRadius: 10
+  },
+  botaodeletar:{
+    textAlignVertical: 'center',
+    marginVertical: 10
+  },
+  addbutton:{
+    backgroundColor: '#ffffff',
+    borderRadius: 50,
+    position: 'absolute',
+    left: 20,
+    bottom: 40,
+    justifyContent: "center",
+    alignItems: "center"
+  }
 });
