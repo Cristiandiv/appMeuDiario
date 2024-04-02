@@ -8,7 +8,7 @@ import AlterarDiario from './AlterarDiario';
 
 const Stack = createStackNavigator();
 
-export default function RotasAcesso (){
+export default function RotasApp (){
     return(
         <NavigationContainer>
             <Stack.Navigator initialRouteName='Home'>
