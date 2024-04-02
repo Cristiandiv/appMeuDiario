@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 
-import Rotas from './pages/RotasAcesso';
+import Rotas from './RotasAcesso';
 
 
 export default function App() {

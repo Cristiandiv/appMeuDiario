@@ -3,6 +3,8 @@ import { View, StyleSheet, Text, FlatList, TouchableOpacity, Alert } from 'react
 import Firebase from '../firebase';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
+
+
 export default function Home({navigation}) {
 
   const [diario, setDiario] = useState([]);
@@ -53,7 +55,7 @@ export default function Home({navigation}) {
           </TouchableOpacity>
 
             <View style={estilo.botaodeletar}>
-              <TouchableOpacity onPress={()=>{deleteMusica(item.id)}}>
+              <TouchableOpacity onPress={()=>{deleteDiario(item.id)}}>
                 <MaterialCommunityIcons name="delete-empty" size={70} color="red" />
               </TouchableOpacity>
             </View>
@@ -64,7 +66,7 @@ export default function Home({navigation}) {
 
       </FlatList>    
 
-      <TouchableOpacity style={estilo.addbutton} onPress={()=>navigation.navigate("CadMusica")}>
+      <TouchableOpacity style={estilo.addbutton} onPress={()=>navigation.navigate("CadDiario")}>
         <MaterialCommunityIcons name="plus-circle-outline" size={70} color="green" />  
       </TouchableOpacity>  
      

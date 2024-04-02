@@ -1,8 +1,8 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Acesso from './Acesso';
-import Home from './paginasapp/Home';
-import Cadastro from './Cadastro'
+import Acesso from './pages/paginalogin/Acesso';
+import Home from './pages/paginasapp/Home';
+import Cadastro from './pages/paginalogin/Cadastro'
 
 
 const Stack = createStackNavigator();

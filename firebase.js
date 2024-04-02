@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAbCspt3HsP6PyR5jIegG2S5Y_fzYAYVoM",
@@ -9,6 +9,12 @@ const firebaseConfig = {
   appId: "1:859882068766:web:4cb61cd0d81479f2abc70f"
 };
 
-const app = initializeApp(firebaseConfig);
 
-export default app;
+if(!Firebase.apps.length){
+
+Firebase.initializeApp(firebaseConfig);
+
+}
+const bdstore = Firebase.firestore()
+
+export default bdstore;

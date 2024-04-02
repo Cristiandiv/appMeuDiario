@@ -8,20 +8,25 @@ import {
     Alert} from 'react-native';
 import Firebase from '../firebase';
 
-export default function CadDiario({navigation}){
-    const [musica, setMusica] = useState(null);
-    const [genero, setGenero] = useState(null);
-    const [banda, setBanda] = useState(null);    
 
-    function addMusica(){
-        Firebase.collection('musica').add({
-            artistabanda: banda,
-            genero: genero,
-            musica: musica,
+
+export default function CadDiario({navigation}){
+    const [titulo, setTitulo] = useState(null);
+    const [texto, setTexto] = useState(null);  
+    const [data, setData] = useState(null);
+    const [local, setLocal] = useState(null);    
+
+    function addDiario(){
+        Firebase.collection('diario').add({
+            titulo: titulo,
+            texto: texto,
+            data: data,
+            local: local, 
         });
-        setBanda({banda:''})
-        setGenero({genero: ''})
-        setMusica({musica: ''})
+        setTitulo({titulo:''})
+        setTexto({texto: ''})
+        setData({data: ''})
+        setLocal({local: ''})
         Alert.alert("Cadastro","Musica cadastrada com sucesso")
         navigation.navigate("Home")
     }
@@ -33,15 +38,17 @@ export default function CadDiario({navigation}){
         </View>
         <View>
             <TextInput autoCapitalize='words' style={estilo.input} placeholder="Digite a Banda/Artista"
-            onChangeText={setBanda} value={banda}/>
-            <TextInput style={estilo.input} placeholder='Digite o Genero da musica' onChangeText={setGenero}
-            value={genero}/>
-            <TextInput style={estilo.input} placeholder='Digite o Nome da musica' onChangeText={setMusica}
-            value={musica}/>
+            onChangeText={setTitulo} value={titulo}/>
+            <TextInput style={estilo.input} placeholder='Digite o Genero da musica' onChangeText={setTexto}
+            value={texto}/>
+            <TextInput style={estilo.input} placeholder='Digite o Nome da musica' onChangeText={setData}
+            value={data}/>
+            <TextInput style={estilo.input} placeholder='Digite o Nome da musica' onChangeText={setLocal}
+            value={local}/>
             <TouchableOpacity
             style={estilo.btnenviar}
             onPress={()=>{
-                addMusica();
+                addDiario();
             }}>
                 <Text style={estilo.btntxtenviar}>Enviar</Text>
             </TouchableOpacity>

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Text, TextInput, View, StyleSheet, TouchableOpacity} from 'react-native';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
-
 import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
 import {ReactNativeAsyncStorage} from '@react-native-async-storage/async-storage';
 
